@@ -1849,11 +1849,11 @@ async fn tw_send_login_flow(
     );
 
     // Parse hidden form fields (exclude type="submit" inputs)
-    let input_re = Regex::new(r#"<input[^>]+>"#)
+    let input_re = Regex::new(r#"(?i)<input[^>]+>"#)
         .map_err(|_| parse_error_str("failed to compile input regex"))?;
-    let name_re = Regex::new(r#"name\s*=\s*['"]([^'"]+)['"]"#)
+    let name_re = Regex::new(r#"(?i)name\s*=\s*['"]([^'"]+)['"]"#)
         .map_err(|_| parse_error_str("failed to compile name regex"))?;
-    let value_re = Regex::new(r#"value\s*=\s*['"]([^'"]*)['"]"#)
+    let value_re = Regex::new(r#"(?i)value\s*=\s*['"]([^'"]*)['"]"#)
         .map_err(|_| parse_error_str("failed to compile value regex"))?;
 
     let mut form_fields: Vec<(String, String)> = Vec::new();
